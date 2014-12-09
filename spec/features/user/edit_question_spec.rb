@@ -5,7 +5,6 @@
 
 
 feature 'Edit a Question' do
-
   # Scenario: User edits a question with valid data
   #  Given I am a user
   #  When I edit a question
@@ -23,6 +22,4 @@ feature 'Edit a Question' do
 
     expect(page).to have_content "I FIGURED IT OUT"
   end
-
-
 end

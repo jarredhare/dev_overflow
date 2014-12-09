@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'questions#index'
   resources :questions do
-    resources :answers
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
+    resources :answers do
+      post 'upvote'
+      post 'downvote'
+    end
   end
 
   # Example of regular route:

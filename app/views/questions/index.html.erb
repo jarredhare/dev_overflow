@@ -4,8 +4,9 @@
 <ul>
   <% @questions.each do |question| %>
     <li>
-      <%= link_to("↑", question_path(question)) %>
-      <%= link_to("↓", question_path(question)) %>
+      <%= pluralize(vote_count(question), "votes") %>
+      <%= link_to("↑", upvote_question_path(question), method: :post) %>
+      <%= link_to("↓", downvote_question_path(question),  method: :post) %>
       <%= link_to("#{question.title}", question_path(question)) %>
     </li>
     <p><%= question.content %></p>

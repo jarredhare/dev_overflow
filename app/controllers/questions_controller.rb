@@ -26,6 +26,24 @@ class QuestionsController < ApplicationController
 
   end
 
+  def update
+    @question = Question.find(params[:id])
+    @question.update_attributes(question_params)
+    redirect_to @question
+  end
+
+  def upvote
+    @question = Question.find(params[:id])
+    @question.votes.create(value: true)
+    redirect_to questions_path
+  end
+
+  def downvote
+    @question = Question.find(params[:id])
+    @question.votes.create(value: false)
+    redirect_to questions_path
+  end
+
   private
   def question_params
     params.require(:question).permit(:title, :content)

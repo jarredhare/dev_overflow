@@ -43,3 +43,4 @@ gem 'capybara',  group: [:test, :development]
 gem 'shoulda-matchers',  group: [:test, :development]
 gem 'factory_girl',  group: [:test, :development]
 gem 'faker',  group: [:test, :development]
+gem 'simplecov', :require => false, :group => :test
