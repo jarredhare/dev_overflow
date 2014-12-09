@@ -6,6 +6,9 @@
 <ul>
   <% @answers.each do |answer| %>
   <li>
+    <%= pluralize(vote_count(answer), "votes") %>
+    <%= link_to("↑", question_answer_upvote_path(@question, answer), method: :post) %>
+    <%= link_to("↓", question_answer_downvote_path(@question, answer),  method: :post) %>
     <%= answer.title %>
   </li>
   <p><%= answer.content %></p>
