@@ -14,7 +14,7 @@ RSpec.describe Question, :type => :model do
       expect(result).to eq(false)
     end
 
-    # context "#associations" do
-      it {should have_many(:answers)}
-    # end
+    it {should have_many(:votes)}
+    it {should have_many(:answers)}
+
 end

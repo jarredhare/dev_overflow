@@ -1,4 +1,5 @@
 <%= @question.title %>
+<%= @question.content %>
 <%= link_to 'Create Answer', new_question_answer_path(@question) %>
 <%= link_to 'Edit Question', edit_question_path %>
 <%= link_to 'Destroy Question', question_path(@question), :confirm => 'Are you sure?', :method => :delete  %>

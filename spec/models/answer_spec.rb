@@ -15,6 +15,6 @@ RSpec.describe Answer, :type => :model do
     end
 
     it {should belong_to (:question)}
-
+    it {should have_many(:votes)}
 
 end
