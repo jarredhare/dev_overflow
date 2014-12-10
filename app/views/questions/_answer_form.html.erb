@@ -1,5 +1,4 @@
-
-<%= bootstrap_form_for ([@question, @answer]) do |f| %>
+<%= bootstrap_form_for ([@question, Answer.new]), remote: true do |f| %>
   <p>
 <!--     <%= f.label :title %><br> -->
     <%= f.text_field :title %>

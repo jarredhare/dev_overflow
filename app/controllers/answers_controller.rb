@@ -8,8 +8,17 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
-    @answer = @question.answers.create(answer_params)
-    redirect_to question_path(params[:question_id])
+    @answer = @question.answers.new(answer_params)
+
+    respond_to do |format|
+      if @answer.save
+        format.html {redirect_to question_path(params[:question_id]), notice: 'Answer successfully created.'}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   def upvote

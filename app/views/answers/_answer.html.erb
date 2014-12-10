@@ -1,0 +1,7 @@
+<li id="<%= answer.id %>">
+  <%= pluralize(vote_count(answer), "vote") %>
+  <%= link_to("↑", question_answer_upvote_path(@question, answer), method: :post, remote: true) %>
+  <%= link_to("↓", question_answer_downvote_path(@question, answer),  method: :post, remote: true) %>
+  <%= answer.title %>
+</li>
+<p><%= answer.content %></p>

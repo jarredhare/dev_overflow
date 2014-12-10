@@ -11,8 +11,15 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    @question.save
-    redirect_to @question
+    respond_to do |format|
+      if @question.save
+        format.html {redirect_to @question, notice: 'Question successfully created.'}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   def destroy
@@ -34,14 +41,31 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question = Question.find(params[:id])
-    @question.votes.create(value: true)
-    redirect_to questions_path
+    @vote = @question.votes.new(value: true)
+    respond_to do |format|
+      if @vote.save
+        format.html {redirect_to root_path}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   def downvote
     @question = Question.find(params[:id])
-    @question.votes.create(value: false)
-    redirect_to questions_path
+    @vote = @question.votes.new(value: false)
+
+    respond_to do |format|
+      if @vote.save
+        format.html {redirect_to root_path}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   private
