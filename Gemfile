@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
@@ -44,3 +42,6 @@ gem 'shoulda-matchers',  group: [:test, :development]
 gem 'factory_girl',  group: [:test, :development]
 gem 'faker',  group: [:test, :development]
 gem 'simplecov', :require => false, :group => :test
+gem 'httparty', group: [:test, :development]
+gem 'dotenv-rails', :groups => [:development, :test]
+

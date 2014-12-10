@@ -1,12 +1,27 @@
 <%= @question.title %><br>
 <%= @question.content %><br>
-<%= link_to 'Create Answer', new_question_answer_path(@question) %>
 <%= link_to 'Edit Question', edit_question_path %>
 <%= link_to 'Destroy Question', question_path(@question), :confirm => 'Are you sure?', :method => :delete  %>
+
+<%= form_for ([@question, Answer.new]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 <ul>
   <% @answers.each do |answer| %>
   <li>
-    <%= pluralize(vote_count(answer), "votes") %>
+    <%= pluralize(vote_count(answer), "vote") %>
     <%= link_to("↑", question_answer_upvote_path(@question, answer), method: :post) %>
     <%= link_to("↓", question_answer_downvote_path(@question, answer),  method: :post) %>
     <%= answer.title %>
