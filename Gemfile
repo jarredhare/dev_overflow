@@ -44,4 +44,5 @@ gem 'faker',  group: [:test, :development]
 gem 'simplecov', :require => false, :group => :test
 gem 'httparty', group: [:test, :development]
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'bootstrap_form', :groups => [:development, :test]
 

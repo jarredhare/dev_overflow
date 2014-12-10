@@ -1,11 +1,12 @@
-<%= form_for ([@question, @answer]) do |f| %>
+
+<%= bootstrap_form_for ([@question, @answer]) do |f| %>
   <p>
-    <%= f.label :title %><br>
+<!--     <%= f.label :title %><br> -->
     <%= f.text_field :title %>
   </p>
 
   <p>
-    <%= f.label :content %><br>
+   <!--  <%= f.label :content %><br> -->
     <%= f.text_area :content %>
   </p>
 

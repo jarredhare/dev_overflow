@@ -1,9 +1,10 @@
+<div class='container'>
 <h1>Add a new question:</h1>
 <%= render 'form' %>
 <%= github_welcome %>
 
 <h1>Questions List:</h1>
-<ul>
+<ul class="list-inline">
   <% @questions.each do |question| %>
     <li>
       <%= link_to("↑", upvote_question_path(question), method: :post) %>
@@ -15,5 +16,5 @@
     <p><%= question.content %></p>
   <% end %>
 </ul>
-
+</div>
 

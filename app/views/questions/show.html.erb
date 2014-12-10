@@ -1,9 +1,10 @@
+<div class="container">
 <%= @question.title %><br>
 <%= @question.content %><br>
 <%= link_to 'Edit Question', edit_question_path %>
 <%= link_to 'Destroy Question', question_path(@question), :confirm => 'Are you sure?', :method => :delete  %>
 
-<%= form_for ([@question, Answer.new]) do |f| %>
+<%= bootstrap_form_for ([@question, Answer.new]) do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -29,3 +30,4 @@
   <p><%= answer.content %></p>
   <% end %>
 </ul>
+</div>
