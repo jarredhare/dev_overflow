@@ -23,14 +23,30 @@ class AnswersController < ApplicationController
 
   def upvote
     @answer = Answer.find(params[:answer_id])
-    @answer.votes.create(value: true)
-    redirect_to question_path(params[:question_id])
+    @vote = @answer.votes.new(value: true)
+    respond_to do |format|
+      if @vote.save
+        format.html {redirect_to question_path(params[:question_id])}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   def downvote
     @answer = Answer.find(params[:answer_id])
-    @answer.votes.create(value: false)
-    redirect_to question_path(params[:question_id])
+    @vote = @answer.votes.new(value: false)
+    respond_to do |format|
+      if @vote.save
+        format.html {redirect_to question_path(params[:question_id])}
+        format.js
+      else
+        format.html {render action: "index"}
+        format.js
+      end
+    end
   end
 
   private

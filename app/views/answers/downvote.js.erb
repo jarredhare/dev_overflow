@@ -1,0 +1,2 @@
+var votes = '<%= pluralize(vote_count(@answer), "vote") %>'
+$('#' + "<%= j(@answer.id.to_s) %> span").text(votes)
