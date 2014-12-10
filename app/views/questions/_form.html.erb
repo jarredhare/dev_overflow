@@ -1,4 +1,15 @@
-<%= bootstrap_form_for :question, url: questions_path do |f| %>
+<%= bootstrap_form_for @question do |f| %>
+	<% if @question.errors.any? %>
+	  <div id="error_explanation">
+	    <h2><%= pluralize(@question.errors.count, "error") %> prohibited
+	      this question from being saved:</h2>
+	    <ul>
+	    <% @question.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+  <% end %>
   <p>
 <!--     <%= f.label :title %><br> -->
     <%= f.text_field :title %>

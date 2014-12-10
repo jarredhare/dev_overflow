@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
   def index
+    @question = Question.new
     @questions = Question.all
+  end
+
+  def new
+    @question = Question.new
   end
 
   def show
@@ -11,8 +16,11 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    @question.save
-    redirect_to @question
+    if @question.save
+      redirect_to @question
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -21,15 +29,14 @@ class QuestionsController < ApplicationController
     redirect_to questions_path
   end
 
-  def edit
-    @question = Question.find(params[:id])
-
-  end
 
   def update
     @question = Question.find(params[:id])
-    @question.update_attributes(question_params)
-    redirect_to @question
+    if @question.update(question_params)
+      redirect_to @question
+    else
+      render 'edit'
+    end
   end
 
   def upvote
