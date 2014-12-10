@@ -9,10 +9,8 @@ module QuestionsHelper
     email = ENV['EMAIL']
     password = ENV['PASSWORD']
     auth = {username: email, password: password }
-    p auth
     response = HTTParty.get(baseurl, basic_auth: auth)
-    p response.message
-    p "*"*50
+
     unless response.code == 403
       response.body
     else
