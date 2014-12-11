@@ -1,11 +1,13 @@
 <div class='container'>
-<h1>Add a new question:</h1>
-<%= render 'form' %>
-<%= github_welcome %>
+  <h1>Add a new question:</h1>
+  <%= render 'form' %>
+  <h3>Live Markdown:</h3>
+  <div id="markdown" class="col-xs-12"></div>
+  <%= github_welcome %>
 
-<h1>Questions List:</h1>
-<ul id="questions" class="list-inline">
-  <%= render @questions %>
-</ul>
+  <h1>Questions List:</h1>
+  <ul id="questions" class="list-inline">
+    <%= render @questions %>
+  </ul>
 </div>
 
