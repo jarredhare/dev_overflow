@@ -19,10 +19,11 @@ Controller.prototype = {
         newHtml += this.getHeadings(lines[index])
       } else if (lines[index].match(/^!\[.*]\((.+)\)$/)) {  //getting images
         newHtml += this.getImage(lines[index])
+      } else if (lines[index].match(/^\[(.*)]\((.+)\)$/)) {
+        newHtml += this.getLink(lines[index])
       } else {
         newHtml += lines[index]
       }
-
     }
     $('#markdown').html(newHtml)
   },
@@ -40,6 +41,10 @@ Controller.prototype = {
 
   getImage: function(line) {
     return "<img src=" + line.match(/^!\[.*]\((.+)\)$/)[1] + "/>"
+  },
+
+  getLink: function(line) {
+    return "<a href=" + line.match(/^\[(.*)]\((.+)\)$/)[2] + ">" + line.match(/^\[(.*)]\((.+)\)$/)[1] + "</a>"
   }
 }
 
