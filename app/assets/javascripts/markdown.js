@@ -4,25 +4,43 @@ $(document).on("page:change", function() {
 })
 
 function Controller() {
-
 }
 
 Controller.prototype = {
   bindListeners: function(){
-    $('#question_content').on('keyup', this.getNewHtml)
+    $('#question_content').on('keyup', this.getNewHtml.bind(this))
   },
+
   getNewHtml: function(){
     newHtml = ""
     var lines = $('#question_content').val().split("\n")
-    for(var i = 0; i < lines.length; i++){
-      for(var headingIndex = 1; headingIndex <=6; headingIndex++){
-        var re = new RegExp('^#{' + headingIndex + '}((\\w|\\s)+)$');
-        if (lines[i].match(re)) {
-          newHtml += "<h"+headingIndex+">" + lines[i].match(re)[1] + "</h"+headingIndex+">"
-        }
+    for(var index = 0; index < lines.length; index++){
+      if (lines[index].match(/^#.*/))  {                    //getting headlines
+        newHtml += this.getHeadings(lines[index])
+      } else if (lines[index].match(/^!\[.*]\((.+)\)$/)) {  //getting images
+        newHtml += this.getImage(lines[index])
+      } else {
+        newHtml += lines[index]
       }
 
     }
     $('#markdown').html(newHtml)
+  },
+
+  getHeadings: function(line) {
+    headingHtml = ""
+    for(var headingIndex = 1; headingIndex <=6; headingIndex++){
+      var re = new RegExp('^#{' + headingIndex + '}((\\w|\\s)+)$');
+      if (line.match(re)) {
+        headingHtml += "<h"+headingIndex+">" + line.match(re)[1] + "</h"+headingIndex+">"
+      }
+    }
+    return headingHtml
+  },
+
+  getImage: function(line) {
+    return "<img src=" + line.match(/^!\[.*]\((.+)\)$/)[1] + "/>"
   }
 }
+
+
