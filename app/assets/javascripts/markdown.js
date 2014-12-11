@@ -21,8 +21,10 @@ Controller.prototype = {
         newHtml += this.getImage(lines[index])
       } else if (lines[index].match(/^\[(.*)]\((.+)\)$/)) {
         newHtml += this.getLink(lines[index])
+      } else if (lines[index].match(/^[\*|\-|+](.+)$/)) {
+        newHtml += this.getList(lines[index])
       } else {
-        newHtml += lines[index]
+        newHtml += lines[index] + "<br>"
       }
     }
     $('#markdown').html(newHtml)
@@ -44,7 +46,13 @@ Controller.prototype = {
   },
 
   getLink: function(line) {
-    return "<a href=" + line.match(/^\[(.*)]\((.+)\)$/)[2] + ">" + line.match(/^\[(.*)]\((.+)\)$/)[1] + "</a>"
+    var href = line.match(/^\[(.*)]\((.+)\)$/)[2]
+    var title = line.match(/^\[(.*)]\((.+)\)$/)[1]
+    return "<a href=" + href + ">" + title + "</a>"
+  },
+
+  getList: function(line) {
+    return "<li>" + line.match(/^[\*|\-|+](.+)$/)[1] + "</li>"
   }
 }
 
