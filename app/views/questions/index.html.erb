@@ -1,12 +1,17 @@
 <div class='container'>
-  <h1>Add a new question:</h1>
-  <%= render 'form' %>
-  <h3>Live Markdown:</h3>
-  <div id="markdown" class="col-xs-12"></div>
-
-  <h1>Questions List:</h1>
-  <ul id="questions" class="list-inline">
-    <%= render @questions %>
-  </ul>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Add a new question:</h3>
+      <%= render 'form' %>
+    </div>
+    <h3 class="col-md-7 col-md-offset-1">Live Markdown:</h3>
+    <div id="markdown" class="col-md-7 col-md-offset-1"></div>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Questions:</h3>
+    <ul id="questions" class="list-group">
+      <%= render @questions %>
+    </ul>
+  </div>
 </div>
 

@@ -1,15 +1,13 @@
 <%= bootstrap_form_for :question, url: questions_path, remote: true do |f| %>
-  <p>
-<!--     <%= f.label :title %><br> -->
+  <div>
     <%= f.text_field :title %>
-  </p>
+  </div>
 
-  <p>
-<!--     <%= f.label :content %><br> -->
+  <div>
     <%= f.text_area :content %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div>
+    <%= f.submit 'Submit Question', :class => 'btn btn-default btn-success' %>
+  </div>
 <% end %>

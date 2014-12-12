@@ -15,12 +15,26 @@
  *= require_self
  */
 
+body {
+  background-color: #6791B3;
+  background-image: url('bg.png')
+}
+
 #markdown {
   border: solid #CCC 1px;
-  min-height: 100px;
+  height: 250px;
   border-radius: 5px;
+  overflow: scroll;
+  background-color: white;
 }
 
 #question_content {
-  min-height: 100px;
+  width: 360px;
+  height: 150px;
+  resize: none;
 }
+
+#question_title {
+  max-width: 360px;
+}
+

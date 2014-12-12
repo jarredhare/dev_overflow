@@ -1,8 +1,8 @@
-<li id="<%= answer.id %>">
-    <%= answer.title %><br>
+<li id="<%= answer.id %>" class="list-group-item">
+  <strong><%= answer.title %></strong>
   <%= link_to("↑", question_answer_upvote_path(@question, answer), method: :post, remote: true) %>
   <%= link_to("↓", question_answer_downvote_path(@question, answer),  method: :post, remote: true) %>
-  <span><%= pluralize(vote_count(answer), "vote") %></span>
-
+  <span class="badge"><%= pluralize(vote_count(answer), "vote") %></span>
+  <p><%= answer.content %></p>
 </li>
-<p><%= answer.content %></p>
+
