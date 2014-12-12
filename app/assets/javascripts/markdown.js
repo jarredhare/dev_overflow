@@ -14,7 +14,7 @@ Controller.prototype = {
   getNewHtml: function(){
     newHtml = ""
     var lines = $('#question_content').val().split("\n")
-    for(var index = 0; index < lines.length; index++){
+    for(var index in lines){
       if (lines[index].match(/^#.*/))  {                            //getting headlines
         newHtml += this.getHeadings(lines[index])
       } else if (lines[index].match(/^!\[.*]\((.+)\)$/)) {          //getting images
