@@ -11,19 +11,23 @@ Controller.prototype = {
     $('#question_content').on('keyup', this.getNewHtml.bind(this))
   },
 
-  getNewHtml: function(lines){
+  getNewHtml: function(){
     newHtml = ""
     var lines = $('#question_content').val().split("\n")
     for(var index = 0; index < lines.length; index++){
-      if (lines[index].match(/^#.*/))  {                    //getting headlines
+      if (lines[index].match(/^#.*/))  {                            //getting headlines
         newHtml += this.getHeadings(lines[index])
-      } else if (lines[index].match(/^!\[.*]\((.+)\)$/)) {  //getting images
+      } else if (lines[index].match(/^!\[.*]\((.+)\)$/)) {          //getting images
         newHtml += this.getImage(lines[index])
-      } else if (lines[index].match(/^\[(.*)]\((.+)\)$/)) {
+      } else if (lines[index].match(/^\[(.*)]\((.+)\)$/)) {         //getting links
         newHtml += this.getLink(lines[index])
-      } else if (lines[index].match(/^[\*|\-|+](.+)$/)) {
+      } else if (lines[index].match(/^[\*|_]{2}(.+)[\*|_]{2}$/)) {  //get bold
+        newHtml += this.getBold(lines[index]) + "<br>"
+      } else if (lines[index].match(/^[\*|_](.+)[\*|_]$/)) {        //get italics
+        newHtml += this.getItalic(lines[index]) + "<br>"
+      } else if (lines[index].match(/^[\*|\-|+](.+)$/)) {           //getting lists
         newHtml += this.getList(lines[index])
-      } else if (lines[index].match(/^`(.+)`$/)) {
+      } else if (lines[index].match(/^`(.+)`$/)) {                  //getting code snippets
         newHtml += this.getCode(lines[index]) + "<br>"
       } else {
         newHtml += lines[index] + "<br>"
@@ -59,6 +63,14 @@ Controller.prototype = {
 
   getCode: function(line) {
     return "<code>" + line.match(/^`(.+)`$/)[1] + "</code>"
+  },
+
+  getItalic: function(line) {
+    return "<em>" + line.match(/^[\*|_](.+)[\*|_]$/)[1] + "</em>"
+  },
+
+  getBold: function(line) {
+    return "<strong>" + line.match(/^[\*|_]{2}(.+)[\*|_]{2}$/)[1] + "</strong>"
   }
 }
 
