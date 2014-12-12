@@ -11,7 +11,7 @@ Controller.prototype = {
     $('#question_content').on('keyup', this.getNewHtml.bind(this))
   },
 
-  getNewHtml: function(){
+  getNewHtml: function(lines){
     newHtml = ""
     var lines = $('#question_content').val().split("\n")
     for(var index = 0; index < lines.length; index++){
@@ -23,6 +23,8 @@ Controller.prototype = {
         newHtml += this.getLink(lines[index])
       } else if (lines[index].match(/^[\*|\-|+](.+)$/)) {
         newHtml += this.getList(lines[index])
+      } else if (lines[index].match(/^`(.+)`$/)) {
+        newHtml += this.getCode(lines[index]) + "<br>"
       } else {
         newHtml += lines[index] + "<br>"
       }
@@ -53,6 +55,10 @@ Controller.prototype = {
 
   getList: function(line) {
     return "<li>" + line.match(/^[\*|\-|+](.+)$/)[1] + "</li>"
+  },
+
+  getCode: function(line) {
+    return "<code>" + line.match(/^`(.+)`$/)[1] + "</code>"
   }
 }
 
